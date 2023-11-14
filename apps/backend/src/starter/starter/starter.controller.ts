@@ -5,7 +5,7 @@ import { HelloAPIResponse } from './starter.interfaces';
 @Controller()
 export class StarterController {
   @Get('hello')
-  @ApiQuery({ name: 'name', required: true, example: 'romeo', type: String })
+  @ApiQuery({ name: 'name', required: true, example: 'flowte', type: String })
   hello(@Query('name') name: string): HelloAPIResponse {
     return { message: `Hello ${name}` };
   }
