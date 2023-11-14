@@ -1,7 +1,11 @@
 {
   "name": "flowxt-app-starter",
   "version": "1.0.0",
-  "description": "",
+  "author": {
+    "name": "Flowrome",
+    "url": "https://github.com/Flowrome"
+  },
+  "description": "A React/Vite monorepo that use Nest as backend",
   "main": "index.js",
   "scripts": {
     "pinit": "pnpm install && concurrently -n \"frontend,backend\" -c \"#FE5F55,#2274A5\" \"pnpm run pinit:fe\" \"pnpm run pinit:be\"",
@@ -11,9 +15,8 @@
     "start:dev:fe": "cd apps/frontend && cp envs/.env.dev .env && pnpm run dev",
     "start:dev:be": "cd apps/backend && cp envs/.env.dev .env && pnpm run start:dev"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["react", "vite", "monorepo", "nest", "redux", "app starter"],
+  "license": "MIT",
   "devDependencies": {
     "concurrently": "^8.2.2"
   }
