@@ -1,0 +1,20 @@
+{
+  "name": "flowxt-app-starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "pinit": "pnpm install && concurrently -n \"frontend,backend\" -c \"#FE5F55,#2274A5\" \"pnpm run pinit:fe\" \"pnpm run pinit:be\"",
+    "pinit:fe": "cd apps/frontend && pnpm install",
+    "pinit:be": "cd apps/backend && pnpm install",
+    "start:dev": "concurrently -n \"frontend,backend\" -c \"#FE5F55,#2274A5\" \"pnpm run start:dev:fe\" \"pnpm run start:dev:be\"",
+    "start:dev:fe": "cd apps/frontend && cp envs/.env.dev .env && pnpm run dev",
+    "start:dev:be": "cd apps/backend && cp envs/.env.dev .env && pnpm run start:dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
