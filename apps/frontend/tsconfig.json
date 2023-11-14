@@ -18,7 +18,13 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "@utilities/*": ["./src/utilities/*"],
+      "@store/*": ["./src/redux/*"],
+      "@store": ["./src/redux/index.ts"],
+      "#backend/*": ["../backend/src/*"]
+    }
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]

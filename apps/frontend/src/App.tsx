@@ -1,10 +1,19 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+import { increment } from "@store/reducers/counter";
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "@store";
+import { useGetHelloByNameQuery } from "@store/api/hello";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const dispatch = useAppDispatch();
+  const value = useAppSelector(({ counter: { value } }) => value);
+  const { data } = useGetHelloByNameQuery("romeo");
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   return (
     <>
@@ -18,8 +27,12 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+        <button
+          onClick={() => {
+            dispatch(increment());
+          }}
+        >
+          count is {value}
         </button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
@@ -29,7 +42,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

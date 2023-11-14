@@ -12,6 +12,9 @@ async function bootstrap() {
     AppModule,
     new FastifyAdapter(),
   );
+  app.setGlobalPrefix('api', {
+    exclude: ['swagger'],
+  });
   app.register(helmet, {
     contentSecurityPolicy: {
       directives: {
@@ -22,7 +25,7 @@ async function bootstrap() {
       },
     },
   });
-
+  app.enableCors();
   const config = new DocumentBuilder()
     .setTitle(`Swagger for ${process.env.BE_APP_NAME}`)
     .setVersion('1.0')
