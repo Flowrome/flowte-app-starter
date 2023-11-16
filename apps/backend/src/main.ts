@@ -15,16 +15,18 @@ async function bootstrap() {
   app.setGlobalPrefix('api', {
     exclude: ['swagger'],
   });
-  app.register(helmet, {
-    contentSecurityPolicy: {
-      directives: {
-        defaultSrc: [`'self'`],
-        styleSrc: [`'self'`, `'unsafe-inline'`],
-        imgSrc: [`'self'`, 'data:', 'validator.swagger.io'],
-        scriptSrc: [`'self'`, `https: 'unsafe-inline'`],
+  if (process.env.BE_IS_PROD === 'prod') {
+    app.register(helmet, {
+      contentSecurityPolicy: {
+        directives: {
+          defaultSrc: [`'self'`],
+          styleSrc: [`'self'`, `'unsafe-inline'`],
+          imgSrc: [`'self'`, 'data:', 'validator.swagger.io'],
+          scriptSrc: [`'self'`, `https: 'unsafe-inline'`],
+        },
       },
-    },
-  });
+    });
+  }
   app.enableCors();
   const config = new DocumentBuilder()
     .setTitle(`Swagger for ${process.env.BE_APP_NAME}`)
