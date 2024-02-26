@@ -13,7 +13,10 @@
     "pinit:be": "cd apps/backend && pnpm install",
     "start:dev": "concurrently -n \"frontend,backend\" -c \"#FE5F55,#2274A5\" \"pnpm run start:dev:fe\" \"pnpm run start:dev:be\"",
     "start:dev:fe": "cd apps/frontend && cp envs/.env.dev .env && pnpm run dev",
-    "start:dev:be": "cd apps/backend && cp envs/.env.dev .env && pnpm run start:dev"
+    "start:dev:be": "cd apps/backend && cp envs/.env.dev .env && pnpm run start:dev",
+    "start:local": "concurrently -n \"frontend,backend\" -c \"#FE5F55,#2274A5\" \"pnpm run start:local:fe\" \"pnpm run start:local:be\"",
+    "start:local:fe": "cd apps/frontend && cp envs/.env.dev.local .env && pnpm run dev",
+    "start:local:be": "cd apps/backend && cp envs/.env.dev.local .env && pnpm run start:dev"
   },
   "keywords": ["react", "vite", "monorepo", "nest", "redux", "app starter"],
   "license": "MIT",

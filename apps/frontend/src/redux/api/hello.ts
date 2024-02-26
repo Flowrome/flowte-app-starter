@@ -1,16 +1,31 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { EndpointBuilder } from "@reduxjs/toolkit/dist/query/endpointDefinitions";
+import {
+  BaseQueryFn,
+  FetchArgs,
+  FetchBaseQueryError,
+  FetchBaseQueryMeta,
+} from "@reduxjs/toolkit/query";
 import { objectToQuery } from "@utilities/functions/queryparams";
 import { HelloAPIResponse } from "#backend/starter/starter/starter.interfaces";
 
-export const helloApi = createApi({
-  reducerPath: "helloApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: `${import.meta.env.FE_API_BASE_URL}/starter/hello`,
-  }),
-  endpoints: (builder) => ({
-    getHelloByName: builder.query<HelloAPIResponse, string>({
-      query: (name: string) => `${objectToQuery({ name })}`,
+export const helloApi = (
+  builder: EndpointBuilder<
+    BaseQueryFn<
+      string | FetchArgs,
+      unknown,
+      FetchBaseQueryError,
+      // eslint-disable-next-line @typescript-eslint/ban-types
+      {},
+      FetchBaseQueryMeta
+    >,
+    never,
+    "api"
+  >
+) => ({
+  getHelloByName: builder.query<HelloAPIResponse, string>({
+    query: (name: string) => ({
+      url: `starter/hello${objectToQuery({ name })}`,
+      method: "GET",
     }),
   }),
 });
-export const { useGetHelloByNameQuery } = helloApi;

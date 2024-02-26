@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { RouterModule, Routes } from '@nestjs/core';
 import { StarterModule } from './starter/starter.module';
+import { AppController } from './app.controller';
 
 const routes: Routes = [
   {
@@ -16,5 +17,6 @@ const routes: Routes = [
     StarterModule,
     RouterModule.register(routes),
   ],
+  controllers: [AppController],
 })
 export class AppModule {}

@@ -1,0 +1,42 @@
+version: "3.9"
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: apps/frontend/Dockerfile
+      args:
+        - ENV_FILE=./docker-envs/.env.prod
+    restart: unless-stopped
+    networks:
+      - app-network
+    depends_on:
+      - backend
+  backend:
+    build:
+      context: .
+      dockerfile: apps/backend/Dockerfile
+    restart: unless-stopped
+    env_file:
+      - docker-envs/.env.prod
+    networks:
+      - app-network
+    depends_on:
+      - docparser
+    environment:
+      - BE_VERSION=<CHANGE_ME>
+  nginx-proxy:
+    image: nginx
+    ports:
+      - "3080:80"
+      - "3443:443"
+    volumes:
+      - ./nginx/nginx.https.conf:/etc/nginx/nginx.conf
+      - ./nginx/certs:/etc/nginx/certs
+    networks:
+      - app-network
+    depends_on:
+      - frontend
+
+networks:
+  app-network:
+    driver: bridge
