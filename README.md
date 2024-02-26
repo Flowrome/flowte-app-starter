@@ -1,4 +1,4 @@
-# FLOWXT APP STARTER
+# FLOWTE APP STARTER
 
 This is a starter for frontend and backend application using:
 
