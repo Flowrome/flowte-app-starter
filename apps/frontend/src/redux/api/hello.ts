@@ -1,12 +1,12 @@
-import { EndpointBuilder } from "@reduxjs/toolkit/dist/query/endpointDefinitions";
 import {
   BaseQueryFn,
+  EndpointBuilder,
   FetchArgs,
   FetchBaseQueryError,
   FetchBaseQueryMeta,
 } from "@reduxjs/toolkit/query";
-import { objectToQuery } from "@utilities/functions/queryparams";
 import { HelloAPIResponse } from "#backend/starter/starter/starter.interfaces";
+import { objectToQuery } from "@utilities/functions/queryparams";
 
 export const helloApi = (
   builder: EndpointBuilder<
